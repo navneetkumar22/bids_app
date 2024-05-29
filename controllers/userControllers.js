@@ -125,3 +125,95 @@ export const profile = async (req, res) => {
     }
 }
 
+
+/************************************************************** 
+ * @Forgot_password
+ * @Request_type POST
+ * @Route users/password/forgot
+ * @description create forgotPasswordToken and send it back to user
+ * @parameters user email to verify
+ * @returns forgotPasswordToken
+ ***************************************************************/
+
+export const forgetPassword = async (req, res) => {
+
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+
+    try {
+
+        const forgetToken = user.generateForgotPasswordToken();
+        await user.save({ validateBeforeSave: false });
+
+        //send this token to user
+
+        res.status(200).json({
+            success: true,
+            message: "Token sent successfully",
+            forgetToken
+        })
+
+    } catch (error) {
+        //if anything goes wrong
+        user.forgotPasswordToken = undefined;
+        user.forgotPasswordExpiry = undefined;
+        await user.save({ validateBeforeSave: false });
+
+        res.status(error.code || 500).json({
+            success: false,
+            message: error.message,
+        })
+    }
+
+}
+
+
+/************************************************************** 
+ * @Reset_Password
+ * @Request_type POST
+ * @Route users/password/reset/:resetToken
+ * @description User will be allowed to reset password
+ * @parameters token from url, password and confirmPassword
+ * @returns user object
+ ***************************************************************/
+
+export const resetPassword = async (req, res) => {
+    const resetToken = req.params.resetToken;
+    const { password, confirmPassword } = req.body;
+
+    const resetPasswordToken = crypto
+        .createHash("sha256")
+        .update(resetToken)
+        .digest("hex")
+
+    //grab the user from database
+    const user = await User.findOne({
+        forgotPasswordToken: resetPasswordToken,
+        forgotPasswordExpiry: { $gt: Date.now() }
+    });
+
+    if (!user) {
+        throw new Error("Password token is invalid or expired")
+    }
+
+    if (password !== confirmPassword) {
+        throw new Error("Password and Confirm Password does not match")
+    }
+
+    //save user with new password
+    user.password = password;
+    user.forgotPasswordToken = undefined
+    user.forgotPasswordExpiry = undefined
+
+    await user.save()
+
+    //create token and send as response
+    const token = user.createJwtToken()
+    user.password = undefined
+
+    res.status(200).json({
+        success: true,
+        token
+    })
+
+}
