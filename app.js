@@ -15,6 +15,7 @@ import userRoutes from "./routes/userRoutes.js";
 import itemRoutes from "./routes/itemRoutes.js";
 import bidRoutes from "./routes/bidRoutes.js";
 import notificationRoutes from "./routes/notificationRoutes.js";
+import limiter from './services/rateLimiter.js';
 
 //middlewares
 app.use(express.json())
@@ -23,7 +24,10 @@ app.use(express.urlencoded({ extended: true }))
 //folder to save images
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
-//routers
+//rate limiter
+app.use(limiter);
+
+//routes
 app.use('/users', userRoutes);
 app.use('/items', itemRoutes);
 app.use('/items', bidRoutes);
