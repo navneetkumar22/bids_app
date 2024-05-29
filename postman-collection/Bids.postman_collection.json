@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "6b3ab94f-5708-4ab6-858d-6544bcb22bd3",
+		"name": "Bids",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25474097",
+		"_collection_link": "https://universal-escape-912947.postman.co/workspace/bids_app~512e9efd-9920-4ee5-a33f-b4ffadfb7382/collection/25474097-6b3ab94f-5708-4ab6-858d-6544bcb22bd3?action=share&source=collection_link&creator=25474097"
+	},
+	"item": [
+		{
+			"name": "Create a Bid",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\": \"499\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/items/6654c73d405a3bc30b84e6d1/bids",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"items",
+						"6654c73d405a3bc30b84e6d1",
+						"bids"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Bids",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/items/6654c73d405a3bc30b84e6d1/bids",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"items",
+						"6654c73d405a3bc30b84e6d1",
+						"bids"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

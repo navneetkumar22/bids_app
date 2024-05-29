@@ -1,0 +1,184 @@
+{
+	"info": {
+		"_postman_id": "b5f16bff-182f-4940-adfc-dcc3749f65f8",
+		"name": "Item",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25474097",
+		"_collection_link": "https://universal-escape-912947.postman.co/workspace/bids_app~512e9efd-9920-4ee5-a33f-b4ffadfb7382/collection/25474097-b5f16bff-182f-4940-adfc-dcc3749f65f8?action=share&source=collection_link&creator=25474097"
+	},
+	"item": [
+		{
+			"name": "Create Item",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "item12",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "this is the test description 12",
+							"type": "text"
+						},
+						{
+							"key": "starting_price",
+							"value": "110.2",
+							"type": "text"
+						},
+						{
+							"key": "current_price",
+							"value": "120.8",
+							"type": "text"
+						},
+						{
+							"key": "end_time",
+							"value": "10/10/2021",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/Users/navneet/Desktop/Screenshot 2024-05-27 at 11.00.54 AM.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:4000/items",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Items",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/items?page=2",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"items"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get single Item",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/items/6654c88f405a3bc30b84e6ef",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"items",
+						"6654c88f405a3bc30b84e6ef"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update item",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Melon\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/items/6654c894405a3bc30b84e6f2",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"items",
+						"6654c894405a3bc30b84e6f2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a Item",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/items/6654c894405a3bc30b84e6f2",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"items",
+						"6654c894405a3bc30b84e6f2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

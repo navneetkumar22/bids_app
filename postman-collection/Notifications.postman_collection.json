@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "ab74ad53-eeb3-473f-828d-871ccf295433",
+		"name": "Notifications",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25474097",
+		"_collection_link": "https://universal-escape-912947.postman.co/workspace/bids_app~512e9efd-9920-4ee5-a33f-b4ffadfb7382/collection/25474097-ab74ad53-eeb3-473f-828d-871ccf295433?action=share&source=collection_link&creator=25474097"
+	},
+	"item": [
+		{
+			"name": "All Notifications",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/notifications",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"notifications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Mark as read",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:4000/notifications/mark-read",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"notifications",
+						"mark-read"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
