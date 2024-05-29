@@ -18,3 +18,76 @@ The API support advanced CRUD operations, user authentication, role-based access
 ### Steps
 
 1. Clone the repository
+```js
+git clone https://github.com/navneetkumar22/bids_app.git
+cd bids_app
+```
+
+2. Install Dependencies
+
+Install the necessary dependencies defined in package.json
+```js
+npm install
+```
+
+3. Environment Variables
+
+Create a .env file in the root directory of the project and add the following environment variables:
+
+```js
+MONGODB_URI=
+PORT=
+JWT_SECRET
+JWT_EXPIRY
+```
+
+4. Run the Application
+```js
+npm start
+```
+
+5. Folder Structure
+```js
+- /controllers
+   - userControllers.js
+   - notificationControllers.js
+   - bidsControllers.js
+   - itemControllers.js
+
+- /models
+   - userSchema.js
+   - bidSchema.js
+   - itemSchema.js
+   - notificationSchema.js
+
+- /routes
+   - userRoutes.js
+   - itemRoutes.js
+   - bidRoutes.js
+   - notificationRoutes.js
+
+- /services
+   - AuthRoles.js
+   - multerConfig.js
+
+- /uploads
+   - contains images of all items
+
+- app.js
+- server.js
+
+- .env
+- .gitignore
+
+- package.json
+
+- Readme.md
+```
+
+</br>
+
+## Routes
+
+![screenshot](./screenshot/Mind%20Maps.jpg)
+
+</br>
